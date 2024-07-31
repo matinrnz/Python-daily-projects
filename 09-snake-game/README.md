@@ -1,0 +1,1 @@
+![Screenshot](snake_game.png)
