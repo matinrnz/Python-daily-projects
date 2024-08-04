@@ -59,7 +59,7 @@ if abs(diff_percentage) > 5:
     # print(articles)
     # 7- Use Python slice operator to create a list that contains the first 3 articles.
     three_articles = articles[:3]
-    print(three_articles)
+    # print(three_articles)
 
     # STEP 3: Use telegram bot api
     # to send a separate message with each article's title and description.

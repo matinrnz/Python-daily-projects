@@ -1,0 +1,1 @@
+![Screenshot](stock-news-telegram-bot.png)
