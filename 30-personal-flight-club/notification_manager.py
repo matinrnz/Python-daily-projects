@@ -13,7 +13,7 @@ class NotificationManager:
 
 # Send each flight as a separate message via Telegram.
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Hello! I send you 3 daily stock articles.")
+    await update.message.reply_text("Hello! I send you the best flight deals.")
 
 
 async def flights_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
