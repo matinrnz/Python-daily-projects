@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 import os
 
@@ -26,6 +27,7 @@ fb_login = driver.find_element(By.XPATH, '//*[@id="u-878807658"]/div/div[1]/div/
                                          '/div[2]/button/div[2]/div[2]')
 fb_login.click()
 
+# Switch to Facebook login window
 sleep(2)
 base_window = driver.window_handles[0]
 fb_login_window = driver.window_handles[1]
@@ -37,12 +39,27 @@ decline_button = driver.find_element(By.XPATH, '//*[@id="facebook"]/body/div[2]/
                                                'div[2]/div/div[1]/div[2]/div')
 decline_button.click()
 
+# Login and hit enter
 sleep(2)
 email_input = driver.find_element(By.NAME, 'email')
 email_input.send_keys(ACCOUNT_EMAIL)
 
 pass_input = driver.find_element(By.NAME, 'pass')
 pass_input.send_keys(ACCOUNT_PASSWORD)
+pass_input.send_keys(Keys.ENTER)
 
-submit_input = driver.find_element(By.ID, 'loginbutton')
-submit_input.click()
+# Switch back to Tinder window
+driver.switch_to.window(base_window)
+print(driver.title)
+
+# Allow location
+allow_location = driver.find_element(By.XPATH, '//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
+allow_location.click()
+
+# Disallow notifications
+notifications = driver.find_element(By.XPATH,'//*[@id="modal-manager"]/div/div/div/div/div[3]/button[2]')
+notifications.click()
+
+# Allow cookies
+cookies = driver.find_element(By.XPATH,'//*[@id="content"]/div/div[2]/div/div/div[1]/button')
+cookies.click()
