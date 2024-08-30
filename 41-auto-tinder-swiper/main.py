@@ -23,7 +23,7 @@ login_button = driver.find_element(By.XPATH, '//*[@id="c-351009880"]/div/div[1]/
                                              'div/header/div/div[2]/div[2]/a/div[2]/div[2]')
 login_button.click()
 
-# Facebook loginsleep92
+# Facebook login
 sleep(2)
 fb_login = driver.find_element(By.XPATH, '//*[@id="c-2079390956"]/div/div[1]/div/div[1]/div/div/div[2]/div[2]/'
                                          'span/div[2]/button/div[2]/div[2]')
