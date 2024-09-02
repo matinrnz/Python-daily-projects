@@ -38,12 +38,13 @@ class InternetSpeedTwitterBot:
         return self.down.text, self.up.text
 
     def tweet_at_provider(self):
+        sleep(10)
         self.driver.get("https://x.com/")
-        sleep(5)
-        refuse = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div[1]/div/div/div/div[2]/button[2]/div')
+        sleep(20)
+        refuse = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div[2]/div/div/div/div[2]/button[2]/div')
         refuse.click()
-        sleep(5)
-        close = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div[2]/div/div/div/button/div')
+        sleep(10)
+        close = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div/div[1]/div/div/div/button')
         close.click()
         sleep(5)
         sign_in = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div[1]/div'
@@ -53,23 +54,38 @@ class InternetSpeedTwitterBot:
         email = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div'
                                                    '/div/div[2]/div[2]/div/div/div/div[4]/label/div/div[2]/div/input')
         email.send_keys(TWITTER_EMAIL)
-        sleep(8)
+        sleep(10)
         next_button = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/'
                                                          'div[2]/div/div/div[2]/div[2]/div/div/div/button[2]/div')
         next_button.click()
-        sleep(8)
+        sleep(15)
         username = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]'
                                                       '/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/'
                                                       'input')
         username.send_keys(TWITTER_USERNAME)
+        sleep(15)
         username.send_keys(Keys.ENTER)
-        sleep(8)
+        sleep(15)
         password = self.driver.find_element(By.XPATH, '//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]'
                                                       '/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/'
                                                       'div[2]/div[1]/input')
         password.send_keys(TWITTER_PASSWORD)
+        sleep(15)
         password.send_keys(Keys.ENTER)
+        sleep(15)
+        tweet = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/'
+                                                   'div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div/div/'
+                                                   'div/div/div/div/div/div/div/div[1]/div/div/div/div/div/div[2]/div/'
+                                                   'div/div/div')
+        tweet_text = f'Hey Internet Provider, why is my internet speed {down}down/{up}up when I pay for 150down/10up?'
+        tweet.send_keys(tweet_text)
         sleep(10)
+        post = self.driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/'
+                                                  'div[3]/div/div[2]/div[1]/div/div/div/div[2]/div[2]/div[2]/div/div/'
+                                                  'div/button')
+        post.click()
+        sleep(15)
+        self.driver.quit()
 
 
 bot = InternetSpeedTwitterBot(CHROME_DRIVER_PATH)
